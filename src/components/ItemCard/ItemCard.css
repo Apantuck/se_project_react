@@ -1,0 +1,25 @@
+.card {
+  position: relative;
+  width: 325px;
+  display: flex;
+  justify-content: center;
+}
+
+.card__title {
+  position: absolute;
+  background-color: white;
+  border-radius: 4px;
+  top: 15px;
+  padding: 2px 12px;
+  margin: 0;
+  color: #00000099;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.card__img {
+  width: 100%;
+  border: 1px solid #0000004d;
+  border-radius: 19px;
+}

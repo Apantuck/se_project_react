@@ -1,0 +1,23 @@
+.main {
+  margin-bottom: 171px;
+}
+
+.cards {
+  margin: 40px 0 0;
+}
+
+.cards__text {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  margin: 0 0 34px;
+}
+
+.cards__list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
