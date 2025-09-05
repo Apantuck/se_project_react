@@ -5,10 +5,10 @@ import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 function Main({ clothingItems, weatherData, onCardClick }) {
   return (
     <main className="main">
-      <WeatherCard />
+      <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          Today is 75&deg; F / You may want to wear:
+          Today is {weatherData.temp}&deg; F / You may want to wear:
         </p>
         <ul className="cards__list">
           {clothingItems

@@ -1,11 +1,24 @@
 import "./WeatherCard.css";
-import cloudy from "../../assets/weather-cloudy.png";
+import cloudy from "../../assets/weather-day-cloudy.png";
+import { weatherBanners } from "../../utils/constants.js";
 
-function WeatherCard() {
+function WeatherCard({ weatherData }) {
+  const bannerURL = () => {
+    if (weatherData?.time && weatherData?.condition) {
+      return weatherBanners[weatherData.time][weatherData.condition];
+    } else {
+      return cloudy;
+    }
+  };
+
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">75&deg;F</p>
-      <img src={cloudy} alt="Cloudy" className="weather-card__image" />
+      <p className="weather-card__temp">{weatherData?.temp}&deg;F</p>
+      <img
+        src={bannerURL()}
+        alt={weatherData.condition}
+        className="weather-card__image"
+      />
     </section>
   );
 }

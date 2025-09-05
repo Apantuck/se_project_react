@@ -1,17 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import "./App.css";
 import Footer from "../Footer/Footer.jsx";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
+import { getWeatherData } from "../../utils/weatherApi.js";
 import { defaultClothingItems } from "../../utils/clothingItems.js";
-import { addGarmentModal, previewItemModal } from "../../utils/constants.js";
-import { use } from "react";
+import {
+  addGarmentModal,
+  previewItemModal,
+  coordinates,
+  units,
+  APIkey,
+} from "../../utils/constants.js";
 
 function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
-  const [weatherData, setWeatherData] = useState({ type: "warm" });
+  const [weatherData, setWeatherData] = useState({
+    type: "",
+    temp: 999,
+    city: "",
+    condition: "",
+    time: "",
+  });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
@@ -28,6 +40,7 @@ function App() {
     setSelectedCard(card);
   };
 
+  // Close modal on "Escape" key press
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
@@ -36,10 +49,30 @@ function App() {
     });
   }, []);
 
+  // Fetch weather data on component mount
+  useEffect(() => {
+    getWeatherData({
+      ...coordinates,
+      units,
+      APIkey,
+    }).then((data) => {
+      setWeatherData({
+        type: data.type,
+        temp: data.temp,
+        city: data.city,
+        condition: data.condition,
+        time: data.time,
+      });
+    });
+  }, []);
+
   return (
     <div className="app">
       <div className="app__content">
-        <Header onButtonClick={handleAddClothesClick} />
+        <Header
+          weatherData={weatherData}
+          onButtonClick={handleAddClothesClick}
+        />
         <Main
           clothingItems={clothingItems}
           weatherData={weatherData}
