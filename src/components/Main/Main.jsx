@@ -2,7 +2,7 @@ import "./Main.css";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 
-function Main({ clothingItems, weatherData }) {
+function Main({ clothingItems, weatherData, onCardClick }) {
   return (
     <main className="main">
       <WeatherCard />
@@ -19,9 +19,8 @@ function Main({ clothingItems, weatherData }) {
               return (
                 <ItemCard
                   key={item._id}
-                  name={item.name}
-                  weather={item.weather}
-                  link={item.link}
+                  item={item}
+                  onCardClick={onCardClick}
                 />
               );
             })}

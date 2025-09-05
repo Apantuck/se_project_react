@@ -1,0 +1,27 @@
+.modal__container_item {
+  max-width: 498px;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.modal__item-image {
+  width: 100%;
+  height: auto;
+}
+
+.modal__item-info-container {
+  padding: 20px 32px 32px;
+}
+
+.modal__title_item {
+  margin-bottom: 12px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__text_item {
+  margin: 0;
+  font-size: 20px;
+  line-height: 24px;
+}

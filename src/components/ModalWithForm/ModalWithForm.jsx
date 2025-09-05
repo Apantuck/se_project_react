@@ -1,15 +1,25 @@
 import "./ModalWithForm.css";
 import closeIcon from "../../assets/icon-close-default.svg";
 
-function ModalWithForm({ buttText, titText, children }) {
+function ModalWithForm({
+  buttText,
+  titText,
+  activeModal,
+  closeActiveModal,
+  modalName,
+  children,
+}) {
   return (
-    <div className="modal">
+    <div
+      className={`modal ${activeModal === modalName ? "modal_is-opened" : ""}`}
+    >
       <div className="modal__container">
         <h2 className="modal__title">{titText}</h2>
         <button
           type="button"
           className="modal__btn-close"
           style={{ backgroundImage: `url(${closeIcon})` }}
+          onClick={closeActiveModal}
         ></button>
         <form className="modal__form">
           {children}

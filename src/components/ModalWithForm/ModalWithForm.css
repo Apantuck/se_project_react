@@ -8,6 +8,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+}
+
+.modal_is-opened {
+  visibility: visible;
 }
 
 .modal__container {
@@ -39,6 +44,7 @@
   background-color: transparent;
   cursor: pointer;
   padding: 0;
+  z-index: 10;
 }
 
 .modal__form {
@@ -88,7 +94,6 @@
 
 .modal__btn-submit {
   margin-top: 32px;
-  /* width: 100%; */
   padding: 8px 16px;
   background-color: #0000004d;
   border-radius: 8px;

@@ -23,6 +23,7 @@
   margin-left: auto;
   margin-right: 20px;
   padding: 0;
+  cursor: pointer;
 }
 
 .header__user-container {

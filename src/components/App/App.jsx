@@ -1,24 +1,59 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Footer from "../Footer/Footer.jsx";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
+import ItemModal from "../ItemModal/ItemModal.jsx";
 import { defaultClothingItems } from "../../utils/clothingItems.js";
+import { addGarmentModal, previewItemModal } from "../../utils/constants.js";
+import { use } from "react";
 
 function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [weatherData, setWeatherData] = useState({ type: "warm" });
   const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
+
+  const handleAddClothesClick = () => {
+    setActiveModal(addGarmentModal);
+  };
+
+  const closeActiveModal = () => {
+    setActiveModal("");
+  };
+
+  const handleCardClick = (card) => {
+    setActiveModal(previewItemModal);
+    setSelectedCard(card);
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    });
+  }, []);
 
   return (
     <div className="app">
       <div className="app__content">
-        <Header />
-        <Main clothingItems={clothingItems} weatherData={weatherData} />
+        <Header onButtonClick={handleAddClothesClick} />
+        <Main
+          clothingItems={clothingItems}
+          weatherData={weatherData}
+          onCardClick={handleCardClick}
+        />
         <Footer />
       </div>
-      <ModalWithForm buttText="Add garment" titText="New garment">
+      <ModalWithForm
+        buttText="Add garment"
+        titText="New garment"
+        activeModal={activeModal}
+        closeActiveModal={closeActiveModal}
+        modalName={addGarmentModal}
+      >
         <label htmlFor="name" className="modal__label">
           Name{" "}
           <input
@@ -53,6 +88,12 @@ function App() {
           </label>
         </fieldset>
       </ModalWithForm>
+      <ItemModal
+        activeModal={activeModal}
+        closeActiveModal={closeActiveModal}
+        modalName={previewItemModal}
+        card={selectedCard}
+      />
     </div>
   );
 }
