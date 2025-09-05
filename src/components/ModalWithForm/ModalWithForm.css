@@ -47,8 +47,8 @@
   z-index: 10;
 }
 
-.modal__form {
-}
+/* .modal__form {
+} */
 
 .modal__label {
   font-weight: 700;
@@ -90,12 +90,20 @@
 }
 
 .modal__label_radio {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #00000080;
+}
+
+.modal__label_radio:has(.modal__input-radio:checked) {
+  color: black;
 }
 
 .modal__btn-submit {
   margin-top: 32px;
   padding: 8px 16px;
-  background-color: #0000004d;
+  background-color: #000000;
   border-radius: 8px;
   border: none;
   font-weight: 700;
@@ -103,4 +111,13 @@
   line-height: 20px;
   color: #ffffff;
   cursor: pointer;
+}
+
+.modal__btn-submit:hover {
+  background-color: #00000099;
+}
+
+.modal__btn-submit:disabled {
+  background-color: #0000004d;
+  cursor: default;
 }
