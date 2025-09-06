@@ -29,7 +29,10 @@ const getWeatherData = ({ latitude, longitude, units, APIkey }) => {
         time: getTimeOfDay(data.sys),
       };
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(err);
+      return Promise.reject(err);
+    });
 };
 
 export { getWeatherData };

@@ -2,8 +2,8 @@ import "./ModalWithForm.css";
 import closeIcon from "../../assets/icon-close-default.svg";
 
 function ModalWithForm({
-  buttText,
-  titText,
+  btnText,
+  titleText,
   activeModal,
   closeActiveModal,
   modalName,
@@ -14,7 +14,7 @@ function ModalWithForm({
       className={`modal ${activeModal === modalName ? "modal_is-opened" : ""}`}
     >
       <div className="modal__container">
-        <h2 className="modal__title">{titText}</h2>
+        <h2 className="modal__title">{titleText}</h2>
         <button
           type="button"
           className="modal__btn-close"
@@ -24,7 +24,7 @@ function ModalWithForm({
         <form className="modal__form">
           {children}
           <button type="submit" className="modal__btn-submit">
-            {buttText}
+            {btnText}
           </button>
         </form>
       </div>

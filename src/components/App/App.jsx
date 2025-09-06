@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Footer from "../Footer/Footer.jsx";
 import Header from "../Header/Header.jsx";
@@ -40,13 +40,18 @@ function App() {
     setSelectedCard(card);
   };
 
+  const closeModalOnEsc = (e) => {
+    if (e.key === "Escape") {
+      closeActiveModal();
+    }
+  };
+
   // Close modal on "Escape" key press
   useEffect(() => {
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeActiveModal();
-      }
-    });
+    document.addEventListener("keydown", closeModalOnEsc);
+    return () => {
+      document.removeEventListener("keydown", closeModalOnEsc);
+    };
   }, []);
 
   // Fetch weather data on component mount
@@ -55,15 +60,19 @@ function App() {
       ...coordinates,
       units,
       APIkey,
-    }).then((data) => {
-      setWeatherData({
-        type: data.type,
-        temp: data.temp,
-        city: data.city,
-        condition: data.condition,
-        time: data.time,
+    })
+      .then((data) => {
+        setWeatherData({
+          type: data.type,
+          temp: data.temp,
+          city: data.city,
+          condition: data.condition,
+          time: data.time,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    });
   }, []);
 
   return (
@@ -81,8 +90,8 @@ function App() {
         <Footer />
       </div>
       <ModalWithForm
-        buttText="Add garment"
-        titText="New garment"
+        btnText="Add garment"
+        titleText="New garment"
         activeModal={activeModal}
         closeActiveModal={closeActiveModal}
         modalName={addGarmentModal}
@@ -115,6 +124,7 @@ function App() {
               name="weatherTypeSelector"
               className="modal__input-radio"
               id="hot"
+              value="hot"
             />
             Hot
           </label>
@@ -124,6 +134,7 @@ function App() {
               name="weatherTypeSelector"
               className="modal__input-radio"
               id="warm"
+              value="warm"
             />
             Warm
           </label>
@@ -133,6 +144,7 @@ function App() {
               name="weatherTypeSelector"
               className="modal__input-radio"
               id="cold"
+              value="cold"
             />
             Cold
           </label>
