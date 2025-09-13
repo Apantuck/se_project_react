@@ -1,8 +1,12 @@
+import React from "react";
 import "./WeatherCard.css";
 import cloudy from "../../assets/weather-day-cloudy.png";
 import { weatherBanners } from "../../utils/constants.js";
+import TemperatureContextUnit from "../../contexts/TemperatureContextUnit.js";
 
 function WeatherCard({ weatherData }) {
+  const tempContext = React.useContext(TemperatureContextUnit);
+
   const getBannerURL = () => {
     if (weatherData?.time && weatherData?.condition) {
       return weatherBanners[weatherData.time][weatherData.condition];
@@ -13,7 +17,10 @@ function WeatherCard({ weatherData }) {
 
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">{weatherData?.temp}&deg;F</p>
+      <p className="weather-card__temp">
+        {weatherData?.temp[tempContext.currentTemperatureUnit]}&deg;
+        {tempContext.currentTemperatureUnit}
+      </p>
       <img
         src={getBannerURL()}
         alt={weatherData.condition}

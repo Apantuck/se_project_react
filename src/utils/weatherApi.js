@@ -22,7 +22,10 @@ const getWeatherData = ({ latitude, longitude, units, APIkey }) => {
     .then((data) => {
       // console.log(`data from weather api:`, data);
       return {
-        temp: Math.round(data.main.temp),
+        temp: {
+          F: Math.round(data.main.temp),
+          C: Math.round((data.main.temp - 32) * (5 / 9)),
+        },
         type: getWeatherConditions(data.main.temp),
         city: data.name,
         condition: data.weather[0].main.toLowerCase(),
