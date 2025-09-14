@@ -2,7 +2,12 @@
   max-width: 498px;
   padding: 0;
   border-radius: 16px;
+  border: 1px solid #0000004d;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
   overflow: hidden;
+  background-color: white;
 }
 
 .modal__item-image {

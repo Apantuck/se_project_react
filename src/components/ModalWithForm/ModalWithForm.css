@@ -16,6 +16,7 @@
 }
 
 .modal__container {
+  padding: 20px 32px 32px;
   background-color: #ffffff;
   border: 1px solid #0000004d;
   border-radius: 20px;

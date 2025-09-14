@@ -19,8 +19,9 @@
   margin: 0;
 }
 
-.clothes-section__add-label {
+.clothes-section__add-btn {
   color: rgba(0, 0, 0, 0.6);
+  border: none;
   margin: 0;
   cursor: pointer;
 }

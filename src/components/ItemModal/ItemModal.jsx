@@ -13,7 +13,7 @@ function ItemModal({
     <div
       className={`modal ${activeModal === modalName ? "modal_is-opened" : ""}`}
     >
-      <div className="modal__container modal__container_item">
+      <div className="modal__container_item">
         <button
           type="button"
           className="modal__btn-close"
