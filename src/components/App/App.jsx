@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Footer from "../Footer/Footer.jsx";
 import Header from "../Header/Header.jsx";
@@ -16,6 +17,7 @@ import {
   APIkey,
 } from "../../utils/constants.js";
 import TemperatureContextUnit from "../../contexts/TemperatureContextUnit.js";
+import Profile from "../Profile/Profile.jsx";
 
 function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
@@ -29,11 +31,6 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [checked, setChecked] = React.useState(false);
-
-  const handleCheckToggle = () => {
-    setChecked(!checked);
-  };
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -98,13 +95,28 @@ function App() {
           <Header
             weatherData={weatherData}
             onButtonClick={handleAddClothesClick}
-            toggleData={{ checked, handleCheckToggle }}
           />
-          <Main
-            clothingItems={clothingItems}
-            weatherData={weatherData}
-            onCardClick={handleCardClick}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  clothingItems={clothingItems}
+                  weatherData={weatherData}
+                  onCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  clothingItems={clothingItems}
+                  onCardClick={handleCardClick}
+                />
+              }
+            />
+          </Routes>
           <Footer />
         </div>
         <ModalWithForm

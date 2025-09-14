@@ -30,6 +30,8 @@
   display: flex;
   align-items: center;
   column-gap: 12px;
+  text-decoration: none;
+  color: black;
 }
 
 .header__username {
