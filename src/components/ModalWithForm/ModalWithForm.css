@@ -19,7 +19,6 @@
   background-color: #ffffff;
   border: 1px solid #0000004d;
   border-radius: 20px;
-  padding: 28px 28px 36px;
   position: relative;
   max-width: 496px;
   width: 100%;
@@ -114,10 +113,10 @@
 }
 
 .modal__btn-submit:hover {
-  background-color: #00000099;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .modal__btn-submit:disabled {
-  background-color: #0000004d;
-  cursor: default;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: not-allowed;
 }
