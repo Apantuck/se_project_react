@@ -68,7 +68,6 @@ function App() {
           imageUrl: item.imageUrl,
           weather: item.weather,
         };
-        console.log("Added item:", newItem);
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
         formReset();
