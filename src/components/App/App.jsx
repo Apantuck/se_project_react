@@ -19,11 +19,17 @@ import {
 import TemperatureContextUnit from "../../contexts/TemperatureContextUnit.js";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+import {
+  getClothingItems,
+  addClothingItem,
+  deleteClothingItem,
+} from "../../utils/api.js";
 //#endregion
 
 function App() {
   //#region State Variables + Handlers
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+
+  const [clothingItems, setClothingItems] = useState([]);
   const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999, C: 999 },
@@ -55,24 +61,34 @@ function App() {
   };
 
   const handleAddItem = (item, formReset) => {
-    // todo : get id from backend
-    const newItem = {
-      _id: clothingItems.length + 1,
-      name: item.name,
-      weather: item.weatherType,
-      link: item.url,
-    };
-    setClothingItems([newItem, ...clothingItems]);
-    closeActiveModal();
-    // to do: if successful addition only
-    formReset();
+    addClothingItem(item)
+      .then((data) => {
+        const newItem = {
+          _id: data._id,
+          name: item.name,
+          imageUrl: item.imageUrl,
+          weather: item.weather,
+        };
+        console.log("Added item:", newItem);
+        setClothingItems([newItem, ...clothingItems]);
+        closeActiveModal();
+        formReset();
+      })
+      .catch((err) => {
+        console.error(`Error adding clothing item: ${err}`);
+      });
   };
 
   const handleDeleteItem = (item) => {
-    // todo: delete from backend
-    const updatedItems = clothingItems.filter((i) => i._id !== item._id);
-    setClothingItems(updatedItems);
-    closeActiveModal();
+    deleteClothingItem(item._id)
+      .then(() => {
+        const updatedItems = clothingItems.filter((i) => i._id !== item._id);
+        setClothingItems(updatedItems);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(`Error deleting clothing item: ${err}`);
+      });
   };
 
   const closeModalOnEsc = (e) => {
@@ -80,6 +96,17 @@ function App() {
       closeActiveModal();
     }
   };
+
+  // fetch initial clothing items
+  useEffect(() => {
+    getClothingItems()
+      .then((items) => {
+        setClothingItems(items);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   // Close modal on "Escape" key press
   useEffect(() => {

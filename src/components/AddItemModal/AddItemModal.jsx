@@ -4,8 +4,8 @@ import useForm from "../../hooks/useForm";
 function AddItemModal({ name, curActiveModal, onAddItem, onCloseModal }) {
   const { values, handleChange, handleReset } = useForm({
     name: "",
-    url: "",
-    weatherType: "",
+    imageUrl: "",
+    weather: "",
   });
 
   const handleFormSubmit = (e) => {
@@ -38,8 +38,8 @@ function AddItemModal({ name, curActiveModal, onAddItem, onCloseModal }) {
         <input
           type="url"
           className="modal__input"
-          name="url"
-          value={values.url}
+          name="imageUrl"
+          value={values.imageUrl}
           onChange={handleChange}
           placeholder="Image URL"
           required
@@ -50,10 +50,10 @@ function AddItemModal({ name, curActiveModal, onAddItem, onCloseModal }) {
         <label className="modal__label modal__label_radio">
           <input
             type="radio"
-            name="weatherType"
+            name="weather"
             className="modal__input-radio"
             value="hot"
-            checked={values.weatherType === "hot"}
+            checked={values.weather === "hot"}
             onChange={handleChange}
           />
           Hot
@@ -61,10 +61,10 @@ function AddItemModal({ name, curActiveModal, onAddItem, onCloseModal }) {
         <label className="modal__label modal__label_radio">
           <input
             type="radio"
-            name="weatherType"
+            name="weather"
             className="modal__input-radio"
             value="warm"
-            checked={values.weatherType === "warm"}
+            checked={values.weather === "warm"}
             onChange={handleChange}
           />
           Warm
@@ -72,10 +72,10 @@ function AddItemModal({ name, curActiveModal, onAddItem, onCloseModal }) {
         <label className="modal__label modal__label_radio">
           <input
             type="radio"
-            name="weatherType"
+            name="weather"
             className="modal__input-radio"
             value="cold"
-            checked={values.weatherType === "cold"}
+            checked={values.weather === "cold"}
             onChange={handleChange}
           />
           Cold

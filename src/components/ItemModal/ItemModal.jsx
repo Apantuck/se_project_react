@@ -20,7 +20,11 @@ function ItemModal({
           style={{ backgroundImage: `url(${closeIcon})` }}
           onClick={closeActiveModal}
         ></button>
-        <img src={card?.link} alt={card?.name} className="modal__item-image" />
+        <img
+          src={card?.imageUrl}
+          alt={card?.name}
+          className="modal__item-image"
+        />
         <div className="modal__item-info-container">
           <div className="modal__item-text-container">
             <h2 className="modal__item-text">{card?.name}</h2>
