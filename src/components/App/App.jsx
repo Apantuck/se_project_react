@@ -8,7 +8,6 @@ import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeatherData } from "../../utils/weatherApi.js";
-import { defaultClothingItems } from "../../utils/clothingItems.js";
 import {
   addGarmentModal,
   previewItemModal,
