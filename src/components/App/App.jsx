@@ -15,7 +15,7 @@ import {
   units,
   APIkey,
 } from "../../utils/constants.js";
-import TemperatureContextUnit from "../../contexts/TemperatureContextUnit.js";
+import CurrentTemperatureContextUnit from "../../contexts/CurrentTemperatureContextUnit.js";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import {
@@ -138,7 +138,7 @@ function App() {
 
   return (
     <div className="app">
-      <TemperatureContextUnit.Provider
+      <CurrentTemperatureContextUnit.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="app__content">
@@ -183,7 +183,7 @@ function App() {
           card={selectedCard}
           onDeleteItem={handleDeleteItem}
         />
-      </TemperatureContextUnit.Provider>
+      </CurrentTemperatureContextUnit.Provider>
     </div>
   );
 }

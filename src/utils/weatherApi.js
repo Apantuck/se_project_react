@@ -1,3 +1,4 @@
+import { fetchAPI } from "./api.js";
 const baseUrl = "https://api.openweathermap.org/data/2.5/weather";
 
 const getWeatherConditions = (temp) => {
@@ -11,16 +12,8 @@ const getTimeOfDay = ({ sunrise, sunset }) => {
 
 const getWeatherData = ({ latitude, longitude, units, APIkey }) => {
   const weatherApiUrl = `${baseUrl}?lat=${latitude}&lon=${longitude}&units=${units}&appid=${APIkey}`;
-  // console.log("Fetching weather data from:", weatherApiUrl);
-  return fetch(weatherApiUrl)
-    .then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Error: ${res.status}`);
-      }
-      return res.json();
-    })
+  return fetchAPI(weatherApiUrl)
     .then((data) => {
-      // console.log(`data from weather api:`, data);
       return {
         temp: {
           F: Math.round(data.main.temp),
